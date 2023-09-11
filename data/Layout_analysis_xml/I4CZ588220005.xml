@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>Transkribus</Creator>
+        <Created>2022-09-06T12:00:26.622+02:00</Created>
+        <LastChange>2023-05-04T17:00:46.842+05:30</LastChange>
+        <TranskribusMetadata docId="-1" pageId="-1" pageNr="291" status="DONE"/>
+    </Metadata>
+    <Page imageFilename="I4CZ588220005.jpg" imageWidth="2000" imageHeight="529">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1683199846847" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_main"/>
+                <RegionRefIndexed index="1" regionRef="region_main"/>
+                <RegionRefIndexed index="2" regionRef="region_main"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_main" custom="readingOrder {index:0;}">
+            <Coords points="364,153.3 1621.7,126.7 1625.8,398.5 362,425.1 376.3,423 364,429.1 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:1;} structure {type:caption;}">
+            <Coords points="20.4,443.4 20.4,486.4 321.1,486.4 321.1,443.4 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:2;} structure {type:caption;}">
+            <Coords points="1627.8,412.8 1627.8,455.7 1944.8,455.7 1944.8,412.8 "/>
+        </TextRegion>
+        <ImageRegion custom="readingOrder {index:3;}">
+            <Coords points="73.6,153.3 73.6,429.1 310.8,429.1 310.8,153.3 "/>
+        </ImageRegion>
+        <ImageRegion custom="readingOrder {index:4;}">
+            <Coords points="1666.7,114.4 1666.7,408.7 1912.1,408.7 1912.1,114.4 "/>
+        </ImageRegion>
+    </Page>
+</PcGts>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>Transkribus</Creator>
+        <Created>2022-09-06T12:00:26.622+02:00</Created>
+        <LastChange>2023-05-08T14:51:25.351+05:30</LastChange>
+        <TranskribusMetadata docId="-1" pageId="-1" pageNr="345" status="DONE"/>
+    </Metadata>
+    <Page imageFilename="I1KG27520439" imageWidth="493" imageHeight="700">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1683537685352" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1683347586509_424"/>
+                <RegionRefIndexed index="1" regionRef="region_1683347595094_427"/>
+                <RegionRefIndexed index="2" regionRef="region_1683370757537_884"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion type="header" id="region_1683347586509_424" custom="readingOrder {index:0;} structure {type:header;}">
+            <Coords points="203,42 269,42 270,57 204,57"/>
+        </TextRegion>
+        <TextRegion type="header" id="region_1683347595094_427" custom="readingOrder {index:1;} structure {type:header;}">
+            <Coords points="413,43 442,43 442,59 413,59"/>
+        </TextRegion>
+        <TextRegion id="region_1683370757537_884" custom="readingOrder {index:2;} structure {type:table;}">
+            <Coords points="20,75 451,75 451,647 20,647"/>
+        </TextRegion>
+    </Page>
+</PcGts>

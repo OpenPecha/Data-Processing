@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>Transkribus</Creator>
+        <Created>2022-09-06T12:00:26.622+02:00</Created>
+        <LastChange>2023-05-10T15:15:30.239+05:30</LastChange>
+        <TranskribusMetadata docId="-1" pageId="-1" pageNr="155" status="DONE"/>
+    </Metadata>
+    <Page imageFilename="24220711.jpg" imageWidth="2000" imageHeight="362">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1683711930240" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_main"/>
+                <RegionRefIndexed index="1" regionRef="region_main"/>
+                <RegionRefIndexed index="2" regionRef="region_main"/>
+                <RegionRefIndexed index="3" regionRef="region_main"/>
+                <RegionRefIndexed index="4" regionRef="region_main"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_main" custom="readingOrder {index:0;}">
+            <Coords points="156.2,115.7 341.3,118.2 329.3,141.6 324.2,162.9 321.7,193.1 324.2,225.8 334.3,246 345.6,264.8 344.4,274.9 159.2,268.6 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:1;}">
+            <Coords points="540.6,106.9 1360.5,104.4 1339,145.9 1331.5,173.5 1334,206.2 1334,232.7 1141.3,240.2 1143.8,272.9 679.1,274.2 675.3,246.5 544.3,240.2 556.9,183.6 545.6,143.4 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:2;} structure {type:marginalia;}">
+            <Coords points="111.1,93.1 111.1,304.3 147.6,304.3 147.6,93.1 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:3;} structure {type:marginalia;}">
+            <Coords points="1753.6,113.4 1753.6,255.5 1781.3,255.5 1781.3,113.4 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:4;}">
+            <Coords points="1555.8,110.9 1743.5,112.2 1747.3,266.9 1554.6,273.1 1572.2,229.1 1571,183.9 1568.4,147.4 "/>
+        </TextRegion>
+        <ImageRegion custom="readingOrder {index:5;}">
+            <Coords points="375.6,88 354.2,110.7 332.7,143.4 325.2,177.3 326.4,211.3 341.6,250.3 363,284.2 413.4,309.4 482.6,305.6 528,274.2 541.8,240.2 546.9,218.8 551.9,184.9 548.1,158.5 538,128.3 509.1,91.8 476.3,78 448.6,72.9 408.3,78 "/>
+        </ImageRegion>
+        <ImageRegion custom="readingOrder {index:6;}">
+            <Coords points="1401.9,76.4 1376.7,95.3 1352.8,126.7 1336.4,169.5 1338.9,224.8 1367.9,277.7 1419.5,304.1 1498.9,305.3 1535.4,282.7 1556.8,246.2 1569.4,207.2 1568.1,159.4 1553,119.2 1524,89 1496.3,75.2 1435.9,70.1 "/>
+        </ImageRegion>
+    </Page>
+</PcGts>

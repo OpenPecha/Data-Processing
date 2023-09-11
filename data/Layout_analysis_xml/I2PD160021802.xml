@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>Transkribus</Creator>
+        <Created>2022-09-06T12:00:26.622+02:00</Created>
+        <LastChange>2023-05-09T17:26:58.897+05:30</LastChange>
+        <TranskribusMetadata docId="-1" pageId="-1" pageNr="336" status="DONE"/>
+    </Metadata>
+    <Page imageFilename="I2PD160021802" imageWidth="463" imageHeight="700">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1683633418898" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1683629800188_1724"/>
+                <RegionRefIndexed index="1" regionRef="region_main"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion type="header" id="region_1683629800188_1724" custom="readingOrder {index:0;} structure {type:header;}">
+            <Coords points="63,49 375,62 376,74 62,65"/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:1;}">
+            <Coords points="234,78 441,83 433,645 39,632 42,471 226,474 "/>
+        </TextRegion>
+        <ImageRegion custom="readingOrder {index:2;}">
+            <Coords points="51.5,118 79.5,103 112.5,108 132.5,128 137.5,142 150.5,115 184.5,101 213.5,110 230.5,130 232.5,174 210.5,198 176.5,206 150.5,193 140.5,175 136.5,156 128.5,185 107.5,199 60.5,196 48.5,177 39.5,146 "/>
+        </ImageRegion>
+        <ImageRegion custom="readingOrder {index:3;}">
+            <Coords points="105.5,242.8 75.5,281.8 82.5,318.8 92.5,340.8 115.5,354.8 52.5,347.8 50.5,376.8 57.5,457.8 74.5,471.8 211.5,471.8 221.5,451.8 220.5,418.8 220.5,376.8 219.5,349.8 164.5,355.8 190.5,337.8 202.5,309.8 203.5,280.8 193.5,259.8 170.5,243.8 129.5,234.8 "/>
+        </ImageRegion>
+    </Page>
+</PcGts>

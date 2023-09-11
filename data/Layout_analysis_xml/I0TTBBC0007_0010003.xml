@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>Transkribus</Creator>
+        <Created>2022-09-06T12:00:26.622+02:00</Created>
+        <LastChange>2023-05-01T15:21:02.696+05:30</LastChange>
+        <TranskribusMetadata docId="-1" pageId="-1" pageNr="127" status="DONE"/>
+    </Metadata>
+    <Page imageFilename="I0TTBBC0007_0010003" imageWidth="2000" imageHeight="420">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1682934662734" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_main"/>
+                <RegionRefIndexed index="1" regionRef="region_main"/>
+                <RegionRefIndexed index="2" regionRef="region_main"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_main" custom="readingOrder {index:0;}">
+            <Coords points="474,100 1509,102 1510,319 472,313"/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:1;} structure {type:caption;}">
+            <Coords points="1537.8,319.2 1537.8,356 1912.1,356 1912.1,319.2 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:2;} structure {type:caption;}">
+            <Coords points="53.2,325.3 53.2,360.1 447.9,360.1 447.9,325.3 "/>
+        </TextRegion>
+        <ImageRegion custom="readingOrder {index:3;}">
+            <Coords points="65.4,319.2 65.4,190.3 108.4,139.1 149.3,75.7 214.7,67.5 441.7,67.5 443.8,317.2 "/>
+        </ImageRegion>
+        <ImageRegion custom="readingOrder {index:4;}">
+            <Coords points="1541.9,65.5 1541.9,317.2 1912.1,317.2 1912.1,65.5 "/>
+        </ImageRegion>
+    </Page>
+</PcGts>

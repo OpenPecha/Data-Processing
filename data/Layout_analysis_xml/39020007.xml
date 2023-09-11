@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>Transkribus</Creator>
+        <Created>2022-09-06T12:00:26.622+02:00</Created>
+        <LastChange>2023-05-05T15:17:20.512+05:30</LastChange>
+        <TranskribusMetadata docId="-1" pageId="-1" pageNr="49" status="DONE"/>
+    </Metadata>
+    <Page imageFilename="39020007.jpg" imageWidth="2000" imageHeight="485">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1683280040518" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_main"/>
+                <RegionRefIndexed index="1" regionRef="region_main"/>
+                <RegionRefIndexed index="2" regionRef="region_main"/>
+                <RegionRefIndexed index="3" regionRef="region_main"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_main" custom="readingOrder {index:0;}">
+            <Coords points="530.4,145.8 1519.9,149.6 1514.2,327.8 530.4,329.7 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:1;} structure {type:caption;}">
+            <Coords points="1533,351 1535,376 1725,376 1723,351"/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:2;} structure {type:caption;}">
+            <Coords points="275.9,343 275.9,365.8 443,365.8 443,343 "/>
+        </TextRegion>
+        <TextRegion id="region_main" custom="readingOrder {index:3;} structure {type:marginalia;}">
+            <Coords points="274,144 300,145 289,340 260,332"/>
+        </TextRegion>
+        <ImageRegion custom="readingOrder {index:4;}">
+            <Coords points="1563,138 1564,343 1734,344 1733,139"/>
+        </ImageRegion>
+        <ImageRegion custom="readingOrder {index:5;}">
+            <Coords points="301,136 301,332 492,342 498,134"/>
+        </ImageRegion>
+    </Page>
+</PcGts>

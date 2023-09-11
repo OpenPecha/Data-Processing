@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+	<Metadata>
+		<Creator>Transkribus</Creator>
+		<Created>2022-09-06T12:00:26.622+02:00</Created>
+		<LastChanged>2022-09-06T12:02:29.072+02:00</LastChanged>
+	</Metadata>
+	<Page imageFilename="50590048" imageWidth="2000" imageHeight="315">
+		<ReadingOrder>
+			<OrderedGroup id="1234_0" caption="Regions reading order"/>
+			<RegionRefIndexed index="0" regionRef="region_main"/>
+		</ReadingOrder>
+		<TextRegion id="region_main" custom="readingOrder {index:0;}">
+			<Coords points="62.4,18.1 63.8,287.2 524.9,281.5 1373.5,283 1932.2,267.4 1929.4,23.8 1356.6,29.4 788,26.6 342.4,29.4 "/>
+		</TextRegion>
+		<TextRegion id="region_main" custom="readingOrder {index:0;} structure {type:marginalia;}">
+			<Coords points="1971.9,135.7 1971.9,135.7 1973.3,135.7 1974.7,135.7 1976.1,135.7 1977.5,135.7 1978.9,135.7 1980.3,135.7 1980.3,137.1 1981.8,137.1 1986,137.1 1988.8,137.1 1988.8,138.5 1990.2,138.5 1993.1,139.9 1994.5,139.9 1995.9,139.9 1998.7,141.3 1998.7,171.1 1995.9,171.1 1994.5,171.1 1991.7,171.1 1990.2,171.1 1988.8,171.1 1986,171.1 1986,171.1 1983.2,172.5 1981.8,172.5 1980.3,172.5 1978.9,172.5 1976.1,172.5 1971.9,171.1 1971.9,171.1 1971.9,169.6 1970.4,169.6 1969,169.6 1969,168.2 1969,166.8 1969,165.4 1969,164 1969,162.6 1969,161.1 1969,159.7 1969,158.3 1969,156.9 1969,155.5 1969,154.1 1969,152.6 1969,151.2 1969,151.2 1969,148.4 1969,147 1969,145.6 1969,144.1 1969,142.7 1969,141.3 1969,139.9 1969,138.5 1969,137.1 1969,137.1 1969,135.7 "/>
+		</TextRegion>
+	</Page>
+</PcGts>
