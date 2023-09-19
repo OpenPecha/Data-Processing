@@ -1,6 +1,7 @@
+import jsonlines
 import xml.etree.ElementTree as ET
 from pathlib import Path
-import jsonlines
+
 
 def get_json_coordinates(points_str):
     return [list(map(float, point.split(','))) for point in points_str.split()]
