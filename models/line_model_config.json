@@ -1,0 +1,4 @@
+{
+  "model": "models/line_model_v1_q.onnx",
+  "patch_size": 512
+}
