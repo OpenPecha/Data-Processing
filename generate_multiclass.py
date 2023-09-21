@@ -19,9 +19,9 @@ from natsort import natsorted
 from Utils import create_directory, sanity_check, generate_multi_mask
 
 
-
-
-def generate_masks(directory: str, annotate_lines: str = "yes", overlay_preview: str = "no") -> None:
+def generate_masks(
+    directory: str, annotate_lines: str = "yes", overlay_preview: str = "no"
+) -> None:
     """
     args:
     - overlay_preview: creates an overlay of the original image and the mask for debugging purposes
@@ -37,25 +37,25 @@ def generate_masks(directory: str, annotate_lines: str = "yes", overlay_preview:
         logging.error(f"Image-Label Pairing broken in: {directory}")
         return
 
-
     mask_dir = os.path.join(directory, "Masks")
     output_dir = os.path.join(mask_dir, f"Multiclass")
     output_masks = os.path.join(output_dir, "Masks")
-    
-    create_directory(mask_dir)  
+
+    create_directory(mask_dir)
     create_directory(output_dir)
     create_directory(output_masks)
 
-
     logging.info(f"created output directory: {output_dir}")
-    
+
     for _img, _xml in tqdm(zip(_images, _xml), total=len(_images)):
         image_n = os.path.basename(_img).split(".")[0]
         img = cv2.imread(_img)
-        clahe = cv2.createCLAHE(clipLimit=0.8, tileGridSize=(24,24))
+        clahe = cv2.createCLAHE(clipLimit=0.8, tileGridSize=(24, 24))
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = clahe.apply(img)
-        img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 13, 11)
+        img = cv2.adaptiveThreshold(
+            img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 13, 11
+        )
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
 
         mask = generate_multi_mask(img, _xml, annotate_lines)
@@ -69,12 +69,15 @@ def generate_masks(directory: str, annotate_lines: str = "yes", overlay_preview:
             cv2.imwrite(mask_out, mask)
 
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_dir", type=str, required=True)
-    parser.add_argument("--overlay", choices=["yes", "no"], required=False, default="no")
-    parser.add_argument("--annotate_lines", choices=["yes", "no"], required=False, default="yes")
+    parser.add_argument(
+        "--overlay", choices=["yes", "no"], required=False, default="no"
+    )
+    parser.add_argument(
+        "--annotate_lines", choices=["yes", "no"], required=False, default="yes"
+    )
 
     args = parser.parse_args()
     input_dir = args.input_dir
