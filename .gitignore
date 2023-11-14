@@ -160,4 +160,11 @@ cython_debug/
 .idea/
 TestData
 Output
+
+# some temporary notebooks
+Cleanup.ipynb
 MapTextToLines.ipynb
+GenerateOCR_From_XML.ipynb
+Demo-DatasetGeneration.ipynb
+GenerateDatasetFromXML.ipynb
+GenerateDatasetFromXML2.ipynb

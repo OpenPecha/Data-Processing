@@ -75,7 +75,23 @@ def sanity_check(images: list[str], annotations: list[str]) -> None:
 
     for image_n, annotation_n in zip(image_names, annotation_names):
         assert image_n == annotation_n
+        
 
+def check_xml_status(xml_file: str):
+    annotation_tree = minidom.parse(xml_file)
+    doc_metadata = annotation_tree.getElementsByTagName("TranskribusMetadata")
+
+    if len(doc_metadata) > 0:
+        page_status = doc_metadata[0].attributes['status'].value
+
+        if page_status == "DONE":
+           return True
+        
+        else:
+            return False
+
+    else :
+        return False
 
 def read_labels(file_path: str) -> list[str]:
     with open(file_path, "r", encoding="utf-8") as f:
@@ -270,6 +286,15 @@ def unpatch_prediction(prediction: np.array, y_splits: int) -> np.array:
     return prediction_sliced
 
 
+def rotate_image(image: np.array, angle: float) -> np.array:
+    rows, cols = image.shape[:2]
+    rot_matrix = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
+    
+    return cv2.warpAffine(
+        image, rot_matrix, (cols, rows), borderValue=(0, 0, 0)
+    )
+
+
 def rotate_page(
     original_image: np.array,
     line_mask: np.array,
@@ -311,6 +336,47 @@ def rotate_page(
     )
 
     return rotated_img, rotated_prediction, mean_angle
+
+
+"""
+The code for the contour rotation is taken from: https://medium.com/analytics-vidhya/tutorial-how-to-scale-and-rotate-contours-in-opencv-using-python-f48be59c35a2
+For this use case the contour is rotated 'back' using the center of the image, instead of the centroid of the contour
+"""
+def pol2cart(theta, rho):
+    x = rho * np.cos(theta)
+    y = rho * np.sin(theta)
+    return x, y
+
+
+def cart2pol(x, y):
+    theta = np.arctan2(y, x)
+    rho = np.hypot(x, y)
+    return theta, rho
+
+def rotate_contour(cnt, center, angle):
+    cx = center[0]
+    cy = center[1]
+
+    cnt_norm = cnt - [cx, cy]
+
+    coordinates = cnt_norm[:, 0, :]
+    xs, ys = coordinates[:, 0], coordinates[:, 1]
+    thetas, rhos = cart2pol(xs, ys)
+
+    thetas = np.rad2deg(thetas)
+    thetas = (thetas + angle) % 360
+    thetas = np.deg2rad(thetas)
+
+    xs, ys = pol2cart(thetas, rhos)
+
+    cnt_norm[:, 0, 0] = xs
+    cnt_norm[:, 0, 1] = ys
+
+    cnt_rotated = cnt_norm + [cx, cy]
+    cnt_rotated = cnt_rotated.astype(np.int32)
+
+    return cnt_rotated
+
 
 
 def generate_binary_mask(
@@ -368,6 +434,15 @@ def generate_multi_mask(
                     [get_xml_point_list(text_area)],
                     color=get_color("margin"),
                 )
+            
+            # handles cases in which the annotators labelled images via a Textarea with "image" tag
+            elif "image" in area_attrs:
+                cv2.fillPoly(
+                    image_mask,
+                    [get_xml_point_list(text_area)],
+                    color=get_color("image"),
+                )
+
             elif "caption" in area_attrs:
                 cv2.fillPoly(
                     image_mask,
@@ -444,6 +519,44 @@ def get_lines(image: np.array, prediction: np.array) -> tuple[list[np.array], di
         line_images = get_line_images(image, sorted_contours)
 
         return line_images, sorted_contours, (x, y, w, h), peaks
+
+
+def group_lines(bbox_centers: list, line_threshold=20):
+  sorted_bbox_centers = []
+  tmp_line = []
+
+  for i in range(0, len(bbox_centers)):
+    # print(f"{i} -> {bbox_centers[i]}")
+    
+      if len(tmp_line) > 0:
+        for s in range(0, len(tmp_line)):
+          # is box on same line?
+          y_diff = abs(tmp_line[s][1] - bbox_centers[i][1])
+
+          # found new line?
+          if y_diff > line_threshold:
+            tmp_line.sort(key=lambda x:x[0])
+            #print(f"Adding line: {tmp_line}")
+            sorted_bbox_centers.append(tmp_line.copy())
+            tmp_line.clear()
+            #print(f"{i} -> cleared tmp_list: starting new tmp line: {bbox_centers[i]}")
+            tmp_line.append(bbox_centers[i])
+            break
+          else:
+          # print(f"{i} -> below thresh: appending to tmp line: {bbox_centers[i]}")
+            tmp_line.append(bbox_centers[i])
+            break
+      else:
+        #print(f"{i} -> tmp-zero: starting new tmp line: {bbox_centers[i]}")
+        tmp_line.append(bbox_centers[i])
+
+  sorted_bbox_centers.append(tmp_line)
+
+  # sort each line by x-value
+  for y in sorted_bbox_centers:
+    y.sort(key=lambda x:x[0])
+
+  return sorted_bbox_centers
 
 
 def sort_lines(line_prediction: np.array, contours: tuple):
@@ -630,6 +743,42 @@ def generate_line_images(image: np.array, prediction: np.array):
     )
 
     return line_images, sorted_contours, bbox, peaks, angle
+
+
+def parse_labels(textlines: list, y_offset: int = -5):
+    
+    # TODO: use a descriptive dictionary or a struct to return the date for less cryptic usage down the road
+    # calculate centers after the rotation of the contours
+    
+    centers = []
+    contour_dict = {}
+
+    for text_line_idx in range(len(textlines)):
+        label = textlines[text_line_idx].getElementsByTagName("Unicode")
+        label = label[0].firstChild.nodeValue
+        box_coords = textlines[text_line_idx].getElementsByTagName('Coords')
+        img_box = box_coords[0].attributes['points'].value
+        box_coordinates = img_box.split(' ')
+        box_coordinates = [x for x in box_coordinates if x != ""]
+
+        z = []
+        for c in box_coordinates:
+            x, y = c.split(",")
+            a = [int(x), int(y)-y_offset]
+            z.append(a)
+
+        pts = np.array(z, dtype=np.int32)
+        x,y,w,h = cv2.boundingRect(pts)
+        min_area_rect = cv2.minAreaRect(pts)
+
+        angle = min_area_rect[2]
+        y_center = y + (h // 2)
+        x_center = x + (w // 2)
+        centers.append((x_center, y_center))
+        contour_dict[(x_center, y_center)] = [pts, label, angle]
+    
+    return centers, contour_dict
+
 
 
 def get_text_points(contour) -> str:
