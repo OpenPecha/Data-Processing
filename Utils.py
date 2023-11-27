@@ -755,7 +755,13 @@ def parse_labels(textlines: list, y_offset: int = -5):
 
     for text_line_idx in range(len(textlines)):
         label = textlines[text_line_idx].getElementsByTagName("Unicode")
-        label = label[0].firstChild.nodeValue
+
+        if label[0].firstChild is not None:
+            print("assuming there is text in the first child...")
+            label = label[0].firstChild.nodeValue
+        else:
+            label = ""
+
         box_coords = textlines[text_line_idx].getElementsByTagName('Coords')
         img_box = box_coords[0].attributes['points'].value
         box_coordinates = img_box.split(' ')
