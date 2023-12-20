@@ -42,7 +42,8 @@ def preprocess_img(image):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     clahe = cv2.createCLAHE(clipLimit=0.8, tileGridSize=(24, 24))
     bw = clahe.apply(image)
-    _, bw = cv2.threshold(bw, 140, 255, cv2.THRESH_BINARY)
+    #_, bw = cv2.threshold(bw, 170, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    bw = cv2.adaptiveThreshold(bw, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 19, 21)
     thresh_c = cv2.cvtColor(bw, cv2.COLOR_GRAY2RGB)
 
     return thresh_c
@@ -100,7 +101,7 @@ if __name__ == "__main__":
     parser.add_argument("--kernel_width", type=int, required=False, default=10)
     parser.add_argument("--kernel_height", type=int, required=False, default=16)
     parser.add_argument("--kernel_iterations", type=int, required=False, default=6)
-    parser.add_argument("--min_length", type=int, required=False, default=1200)
+    parser.add_argument("--min_length", type=int, required=False, default=300)
     parser.add_argument("--min_height", type=int, required=False, default=50)
 
     args = parser.parse_args()

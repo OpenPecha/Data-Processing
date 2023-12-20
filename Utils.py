@@ -757,7 +757,6 @@ def parse_labels(textlines: list, y_offset: int = -5):
         label = textlines[text_line_idx].getElementsByTagName("Unicode")
 
         if label[0].firstChild is not None:
-            print("assuming there is text in the first child...")
             label = label[0].firstChild.nodeValue
         else:
             label = ""
