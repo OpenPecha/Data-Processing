@@ -748,8 +748,10 @@ def generate_line_images(image: np.array, prediction: np.array):
 def parse_labels(textlines: list, y_offset: int = -5):
     
     # TODO: use a descriptive dictionary or a struct to return the date for less cryptic usage down the road
-    # calculate centers after the rotation of the contours
-    
+    # TODO:calculate centers after the rotation of the contours
+    # TODO: split the accumulation of the contour points into 1) from the Texline coords and 2) the baseline with appropriate paramters (offsets etc.)
+    # TODO: also return the BBOX of each line in the to-be defined data structure
+
     centers = []
     contour_dict = {}
 

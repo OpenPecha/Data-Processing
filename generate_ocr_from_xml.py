@@ -69,35 +69,41 @@ def create_dataset(
     kernel_height: int,
     kernel_width: int,
     kernel_iterations: int,
+    use_baseline: bool
 ):
     file_name = os.path.basename(image_file).split(".")[0]
     image = cv2.imread(image_file)
     image = preprocess_img(image)
 
     annotation_tree = minidom.parse(xml_file)
-    textlines = annotation_tree.getElementsByTagName("TextLine")
-    centers, contour_dict = parse_labels(textlines, y_offset=0)
 
-    for line_idx, (_, (k, v)) in enumerate(zip(centers, contour_dict.items())):
-        points, label, angle = v
-        line_image = generate_line_image_v1(
-            image,
-            points,
-            angle,
-            kernel=(kernel_width, kernel_height),
-            iterations=kernel_iterations,
-        )
+    text_areas = annotation_tree.getElementsByTagName("TextRegion")
 
-        if line_image.shape[0] != 0 or line_image.shape[1] != 0:
-            if line_image.shape[1] > min_length and line_image.shape[0] > min_height:
-                save_line_transcription(
-                    file_name, line_idx, line_image, label, images_out, labels_out
-                )
+    for text_area in text_areas:
+        textlines = text_area.getElementsByTagName("TextLine")
+        centers, contour_dict = parse_labels(textlines, y_offset=0)
+
+        for line_idx, (_, (k, v)) in enumerate(zip(centers, contour_dict.items())):
+            points, label, angle = v
+            line_image = generate_line_image_v1(
+                image,
+                points,
+                angle,
+                kernel=(kernel_width, kernel_height),
+                iterations=kernel_iterations,
+            )
+
+            if line_image.shape[0] != 0 or line_image.shape[1] != 0:
+                if line_image.shape[1] > min_length and line_image.shape[0] > min_height:
+                    save_line_transcription(
+                        file_name, line_idx, line_image, label, images_out, labels_out
+                    )
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_dir", type=str, required=True)
+    parser.add_argument("-i", "--input_dir", type=str, required=True)
+    parser.add_argument("-b", "--baseline", choices=["yes", "no"], required=False, default="no")
     parser.add_argument("--kernel_width", type=int, required=False, default=10)
     parser.add_argument("--kernel_height", type=int, required=False, default=16)
     parser.add_argument("--kernel_iterations", type=int, required=False, default=6)
@@ -106,6 +112,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     input_dir = args.input_dir
+    use_baseline = True if args.baseline == "yes" else False
     kernel_width = args.kernel_width
     kernel_height = args.kernel_height
     kernel_iterations = args.kernel_iterations
@@ -142,4 +149,5 @@ if __name__ == "__main__":
             kernel_height,
             kernel_width,
             kernel_iterations,
+            use_baseline
         )
