@@ -69,11 +69,14 @@ def create_dataset(
     kernel_height: int,
     kernel_width: int,
     kernel_iterations: int,
-    use_baseline: bool
+    use_baseline: bool,
+    binarize: bool
 ):
     file_name = os.path.basename(image_file).split(".")[0]
     image = cv2.imread(image_file)
-    image = preprocess_img(image)
+
+    if binarize:
+        image = preprocess_img(image, binarize)
 
     annotation_tree = minidom.parse(xml_file)
 
@@ -104,6 +107,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input_dir", type=str, required=True)
     parser.add_argument("-b", "--baseline", choices=["yes", "no"], required=False, default="no")
+    parser.add_argument("--binarize", choices=["yes", "no"], required=False, default="no")
     parser.add_argument("--kernel_width", type=int, required=False, default=10)
     parser.add_argument("--kernel_height", type=int, required=False, default=16)
     parser.add_argument("--kernel_iterations", type=int, required=False, default=6)
@@ -111,7 +115,8 @@ if __name__ == "__main__":
     parser.add_argument("--min_height", type=int, required=False, default=50)
 
     args = parser.parse_args()
-    input_dir = args.input_dir
+    input_dir = args.input_dir#
+    binarize = True if args.binarize == "yes" else False
     use_baseline = True if args.baseline == "yes" else False
     kernel_width = args.kernel_width
     kernel_height = args.kernel_height
@@ -149,5 +154,6 @@ if __name__ == "__main__":
             kernel_height,
             kernel_width,
             kernel_iterations,
-            use_baseline
+            use_baseline,
+            binarize
         )

@@ -27,7 +27,7 @@ from Utils import (
 
 line_model_config = "models/line_model_config.json"
 MODEL, PATCH_SIZE = get_model_info(line_model_config)
-execution_providers = ["CPUExecutionProvider"]
+execution_providers = ["CUDAExecutionProvider", "CPUExecutionProvider"]
 inference_session = ort.InferenceSession(MODEL, providers=execution_providers)
 
 
