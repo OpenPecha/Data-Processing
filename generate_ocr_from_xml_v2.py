@@ -15,7 +15,6 @@ from IPython.display import Image as ShowImage
 
 @dataclass
 class LineSample:
-    """Class for keeping track of an item in inventory."""
     image: np.array
     label: str
     x: float
